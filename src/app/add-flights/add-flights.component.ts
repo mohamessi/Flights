@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddFlightsComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    this.login("mohamed","pass");
+  }
 
   ngOnInit() {
+  }
+
+  public login(username: string, password: string){
+    localStorage.setItem("username", username);
+    localStorage.removeItem("username");
+    console.log(localStorage.getItem("username"));
+    
   }
 
 }

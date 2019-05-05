@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'flights';
+
+  public login(username: string, password: string){
+    localStorage.setItem("username", username);
+    console.log(localStorage.getItem("username"));
+  }
 }

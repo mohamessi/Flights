@@ -7,7 +7,6 @@ import { AccountComponent } from './pages/account/account.component';
 import { AddFlightComponent } from './pages/add-flight/add-flight.component';
 
 
-
 const routes: Routes = [
   {
     path:'',

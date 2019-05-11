@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LogService } from '../services/log.service';
 
 @Component({
@@ -10,36 +10,50 @@ import { LogService } from '../services/log.service';
 export class LoginComponent implements OnInit 
 {
   loginForm: FormGroup;
-
+  submitted: boolean;  
+  isLogIn: boolean;
+  
   constructor(private logService: LogService) { }
 
   ngOnInit() 
   {
     this.initForm();
-    localStorage.clear();
+    this.submitted = false;
   }
 
   initForm()
   {
     this.loginForm = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
     });
   }
 
-  public logIn(username: string, password: string)
+  get username()
   {
-    this.logService.logIn(username, password);
-    if (this.logService.isLogIn())
-      console.log('is log in', this.logService.isLogIn())
-    else
-      console.log('Oups!');
+    return this.loginForm.get('username');
+  }
+
+  get password()
+  {
+    return this.loginForm.get('password');
   }
 
   onSubmit()
   {
-    let username = this.loginForm.get('username').value;
-    let password = this.loginForm.get('password').value;
+    this.submitted = true;    
+    let username = this.username.value;
+    let password = this.password.value;
     this.logIn(username, password);
+  }
+  
+  public logIn(username: string, password: string)
+  {
+    this.logService.logIn(username, password);
+    this.isLogIn = this.logService.isLogIn;
+    if (this.isLogIn)
+      console.log('is log in', this.logService.user.username);
+    else
+      console.log('Please try again');
   }
 }

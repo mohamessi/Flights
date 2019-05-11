@@ -1,0 +1,43 @@
+.canister
+{
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    padding: 2%;
+    margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+    transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */ 
+    box-shadow: 2px 2px 11px;
+}
+h4
+{
+    text-align: center;
+}
+.form-control
+{
+    text-indent: 15px;
+    box-shadow: none;
+}
+i
+{
+    position: relative;
+    left: 9px;    
+    top: 30px;
+}
+.incorrect
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+.btn
+{
+    margin-top: 35px;
+}
+.ng-valid:not(form)
+{
+    border-left: 5px solid #42A948;
+}
+.ng-invalid:not(form)
+{
+    border-left: 5px solid rgb(235, 9, 9);
+}

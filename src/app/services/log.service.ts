@@ -5,36 +5,33 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class LogService {
+  user: User;
+  isLogIn: boolean;
+  
   private users: Array<User> = [
     new User('Brahim', '123', 'admin'),
     new User('Youcef', '123', 'admin'),
     new User('Khaled', '123', 'costomer')
   ];
+
+  constructor() { }
   
   logIn(username: string, password: string)
   {
-    let user = this.users.find(
+    this.user = this.users.find(
       u => {
         return (u.username===username && u.password==password);
       }      
     );
 
-    if (user)
+    if (this.user)
     {
-      localStorage.setItem('username', user.username);
-      localStorage.setItem('role', user.role);
+      this.isLogIn = true;
     }
   }
 
   logOut()
   {
-    localStorage.clear();
+    this.isLogIn = false;
   }
-
-  isLogIn()
-  {
-    return localStorage.getItem('username');
-  }
-  
-  constructor() { }
 }

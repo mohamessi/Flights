@@ -1,17 +1,25 @@
-<h1> Formulaire : de login </h1>
+<div class="canister col-md-4">
+  <div class="avatar">
+    <img class="mx-auto d-block" src="assets/pictures/avatar.png" />
+  </div>
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  
-  <label>
-    Username:
-    <input type="text" formControlName="username">
-  </label>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      <i class="fa fa-user-circle" aria-hidden="true"></i>
+      <input class="form-control" id="username" type="text" placeholder="Username" formControlName="username">
+      <small class="text-danger" *ngIf="username.invalid && (username.dirty || username.touched)">Can't be blank</small>
+    </div>
 
-  <label>
-    Password:
-    <input type="password" formControlName="password">
-  </label>
+    <div>
+      <i class="fa fa-lock" aria-hidden="true"></i>
+      <input class="form-control" type="password" placeholder="Password" formControlName="password"
+        (ngModelChange)="submitted=false">
+      <small class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">Can't be blank</small>
+    </div>
 
-  <button type="submit" [disabled]="!loginForm.valid">Submit</button>
-
-</form>
+    <button class="btn btn-primary col-md-12" type="submit" [disabled]="!loginForm.valid">Login</button>
+    <div class="incorrect">
+      <small class="text-danger" *ngIf="submitted && !isLogIn">username or password incorrect!</small>
+    </div>
+  </form>
+</div>

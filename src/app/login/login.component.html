@@ -6,7 +6,8 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div>
       <i class="fa fa-user-circle" aria-hidden="true"></i>
-      <input class="form-control" id="username" type="text" placeholder="Username" formControlName="username">
+      <input class="form-control" id="username" type="text" placeholder="Username" formControlName="username"
+        (ngModelChange)="submitted=false">
       <small class="text-danger" *ngIf="username.invalid && (username.dirty || username.touched)">Can't be blank</small>
     </div>
 

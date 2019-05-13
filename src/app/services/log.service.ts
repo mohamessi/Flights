@@ -16,7 +16,7 @@ export class LogService {
 
   constructor() { }
   
-  logIn(username: string, password: string)
+  logIn(username: string, password: string): boolean
   {
     this.user = this.users.find(
       u => {
@@ -25,9 +25,11 @@ export class LogService {
     );
 
     if (this.user)
-    {
       this.isLogIn = true;
-    }
+    else
+      this.isLogIn = false;
+
+    return this.isLogIn;
   }
 
   logOut()

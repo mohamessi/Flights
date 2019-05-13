@@ -1,5 +1,3 @@
-import { User} from './user';
-
 export class Fligth {
     id: number;
     flightNumber: string;
@@ -8,7 +6,4 @@ export class Fligth {
     origin: string;
     destination: string;
     places: number;
-    
-    
-
 }

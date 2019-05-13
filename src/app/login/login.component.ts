@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LogService } from '../services/log.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,18 @@ export class LoginComponent implements OnInit
   submitted: boolean;  
   isLogIn: boolean;
   
-  constructor(private logService: LogService) { }
+  constructor(private logService: LogService, private router: Router) { }
 
   ngOnInit() 
   {
     this.initForm();
     this.submitted = false;
+    this.isLogIn = this.logService.isLogIn;
+    if (this.isLogIn)
+    {
+      this.router.navigate(['/']);
+      console.log('login', this.isLogIn, 'redirected to Home!');
+    }
   }
 
   initForm()
@@ -49,11 +56,13 @@ export class LoginComponent implements OnInit
   
   public logIn(username: string, password: string)
   {
-    this.logService.logIn(username, password);
-    this.isLogIn = this.logService.isLogIn;
+    this.isLogIn = this.logService.logIn(username, password);
     if (this.isLogIn)
-      console.log('is log in', this.logService.user.username);
+    {
+      console.log('is login', this.logService.user.username);
+      this.router.navigate(['/']);
+    }
     else
-      console.log('Please try again');
+      console.log('Please try again, see users array in LogService');
   }
 }

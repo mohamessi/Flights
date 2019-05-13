@@ -14,7 +14,6 @@ import { FlightComponent } from './components/flight/flight.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

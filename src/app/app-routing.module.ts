@@ -9,7 +9,7 @@ import { AddFlightComponent } from './pages/add-flight/add-flight.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path:'home',
     component: HomeComponent,
     pathMatch: 'full'
   },

@@ -18,7 +18,7 @@
       <small class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">Can't be blank</small>
     </div>
 
-    <button class="btn btn-primary col-md-12" type="submit" [disabled]="!loginForm.valid">Login</button>
+    <button class="btn btn-primary col-md-12" type="submit" [disabled]="!loginForm.valid || isLogIn">Login</button>
     <div class="incorrect">
       <small class="text-danger" *ngIf="submitted && !isLogIn">username or password incorrect!</small>
     </div>

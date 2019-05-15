@@ -21,11 +21,11 @@ export class LoginComponent implements OnInit
     this.initForm();
     this.submitted = false;
     this.isLogIn = this.logService.isLogIn;
-    if (this.isLogIn)
+    /* if (this.isLogIn)
     {
       this.router.navigate(['/']);
       console.log('login', this.isLogIn, 'redirected to Home!');
-    }
+    } */
   }
 
   initForm()

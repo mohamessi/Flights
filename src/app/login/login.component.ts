@@ -13,15 +13,15 @@ export class LoginComponent implements OnInit
   loginForm: FormGroup;
   submitted: boolean;  
   isLogIn: boolean;
-  
+    
   constructor(private logService: LogService, private router: Router) { }
 
   ngOnInit() 
   {
     this.initForm();
     this.submitted = false;
-    this.isLogIn = this.logService.isLogIn;
-    /* if (this.isLogIn)
+    this.isLogIn = this.logService.isLogIn();
+    /*if (this.isLogIn)
     {
       this.router.navigate(['/']);
       console.log('login', this.isLogIn, 'redirected to Home!');
@@ -56,13 +56,14 @@ export class LoginComponent implements OnInit
   
   public logIn(username: string, password: string)
   {
-    this.isLogIn = this.logService.logIn(username, password);
+    this.logService.logIn(username, password);
+    this.isLogIn = this.logService.isLogIn();    
     if (this.isLogIn)
     {
-      console.log('is login', this.logService.user.username);
+      console.log(this.logService.getUserLog(), 'is logged');
       this.router.navigate(['/']);
     }
     else
-      console.log('Please try again, see users array in LogService');
+      console.log('Please try again');
   }
 }

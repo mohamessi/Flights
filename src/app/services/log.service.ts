@@ -1,39 +1,58 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LogService {
-  user: User;
-  isLogIn: boolean;
-  
-  private users: Array<User> = [
-    new User('Brahim', '123', 'admin'),
-    new User('Youcef', '123', 'admin'),
-    new User('Khaled', '123', 'costomer')
-  ];
+      
+  private users: Array<User>;
 
-  constructor() { }
+  constructor(private userService: UserService) {
+    userService.getAllUser().subscribe(
+      data => {
+        this.users = data.content;
+      }
+    );
+   }
   
-  logIn(username: string, password: string): boolean
+  logIn(username: string, password: string)
   {
-    this.user = this.users.find(
+    let user = this.users.find(
       u => {
         return (u.username===username && u.password==password);
       }      
     );
 
-    if (this.user)
-      this.isLogIn = true;
-    else
-      this.isLogIn = false;
-
-    return this.isLogIn;
+    if (user)
+    {
+      localStorage.setItem('username', user.username);
+      localStorage.setItem('role', user.role);
+    }
   }
 
   logOut()
   {
-    this.isLogIn = false;
+    localStorage.clear();
+    console.log('Logged out!')
+  }
+
+  isLogIn(): boolean
+  {
+    if (localStorage.getItem('username'))
+      return true;
+    else
+      return false;
+  }
+
+  getUserLog()
+  {
+    return (localStorage.getItem('username'));
+  }
+
+  getUserRole()
+  {
+    return (localStorage.getItem('role'));
   }
 }

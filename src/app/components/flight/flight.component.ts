@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Fligth } from 'src/app/models/fligth';
 
 @Component({
   selector: 'app-flight',
@@ -9,7 +10,10 @@ export class FlightComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  @Input() private flight: Fligth;
 
+  ngOnInit()
+  {
+
+  }
 }

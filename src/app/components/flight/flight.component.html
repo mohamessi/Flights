@@ -1,3 +1,14 @@
-<p>
-  flight works!
-</p>
+<li class="list-group-item">
+  <div class="num">
+      {{ flight.flightNumber }}
+  </div>
+  <div class="date">
+    <p>{{ flight.from | date: 'dd/MM/yyyy' }}</p>
+    <p>{{ flight.to | date: 'dd/MM/yyyy' }}</p>
+  </div>
+  <div class="space">
+    <p>{{ flight.origin }}</p>
+    <p>{{ flight.destination }}</p>
+  </div>
+  <button class="btn btn-danger">Annuler</button>
+</li>

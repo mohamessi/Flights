@@ -1,3 +1,5 @@
-<p>
-  flight-list works!
-</p>
+<div class="canister col-md-12">
+  <ul class="list-group">
+    <app-flight *ngFor="let flight of flights" [flight]=flight></app-flight>
+  </ul>
+</div>

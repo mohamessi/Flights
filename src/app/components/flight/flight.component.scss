@@ -1,0 +1,33 @@
+li
+{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 9px;
+    border-color: yellowgreen;
+}
+.date
+{
+    margin-right: 15px;
+    color: dodgerblue;
+    font-size: 1.03em;
+}
+.num
+{
+    margin-right: 15px;
+    font-weight: bold;
+}
+.space
+{
+    font-weight: bold;
+}
+p
+{
+    margin: 0;
+}
+.btn
+{
+    position: absolute;
+    right: 5px;
+    align-self: flex-end;
+}

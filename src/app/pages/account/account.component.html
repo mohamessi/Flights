@@ -1,3 +1,20 @@
-<p>
-  account works!
-</p>
+<div class="canister col-md-12" *ngIf="username">
+    <div class="user-info">
+        <div class="avatar-role">
+            <img class="mx-auto d-block" src="assets/pictures/avatar.png" />
+            <h6>Role : <span>{{ role }}</span></h6>
+        </div>
+        
+        <div class="username">
+            <h5>{{ username }}</h5>
+            <button class="btn btn-primary">Modifier</button>
+        </div>
+    </div>
+
+    <div class="bookings">
+        <app-flight-list [flights]=bookings></app-flight-list>
+    </div>
+</div>
+<div *ngIf="!username">
+    <p>User logout</p>
+</div>

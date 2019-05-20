@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LogService } from 'src/app/services/log.service';
+import { Fligth } from 'src/app/models/fligth';
+import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
-  constructor() { }
+  private id: number;  
+  private username: string;
+  private role: string;
+  private bookings: Array<Fligth>;
 
-  ngOnInit() {
+  constructor(private logService: LogService, private userService: UserService) { }
+
+  ngOnInit() 
+  {
+    this.id = +this.logService.getIdUser();
+    this.username = this.logService.getUserLog();
+    this.role = this.logService.getUserRole();
+    if (this.username)
+      this.bookings = this.userService.getUserBookings(this.id);
   }
-
 }

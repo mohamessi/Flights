@@ -9,13 +9,14 @@ export class LogService {
       
   private users: Array<User>;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService) 
+  {
     userService.getAllUser().subscribe(
       data => {
         this.users = data.content;
       }
     );
-   }
+  }
   
   logIn(username: string, password: string)
   {
@@ -27,6 +28,7 @@ export class LogService {
 
     if (user)
     {
+      localStorage.setItem('id', String(user.id));
       localStorage.setItem('username', user.username);
       localStorage.setItem('role', user.role);
     }
@@ -46,6 +48,11 @@ export class LogService {
       return false;
   }
 
+  getIdUser()
+  {
+    return (localStorage.getItem('id'));
+  }
+  
   getUserLog()
   {
     return (localStorage.getItem('username'));

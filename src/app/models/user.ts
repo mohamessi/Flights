@@ -11,6 +11,7 @@ export class User {
         this.username = username;
         this.role = role;
         this.password = password;
-     }
+        this.bookings = bookings;
+    }
 
 }

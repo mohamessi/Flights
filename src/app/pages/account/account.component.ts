@@ -20,9 +20,12 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() 
   {
-    this.id = +this.logService.getIdUser();
+    /* this.id = +this.logService.getIdUser();
     this.username = this.logService.getUserLog();
-    this.role = this.logService.getUserRole();
+    this.role = this.logService.getUserRole(); */
+    this.id = +localStorage.getItem('id');
+    this.username = localStorage.getItem('username');
+    this.role = localStorage.getItem('role');
     if (this.username)
       this.bookings = this.userService.getUserBookings(this.id);
   }

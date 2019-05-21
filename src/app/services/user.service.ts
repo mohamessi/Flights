@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { UserResponse } from '../responses/user-response';
 import { User } from '../models/user';
 import { Fligth } from '../models/fligth';
 
@@ -29,14 +27,7 @@ export class UserService {
     }
   ];
 
-  root: string = 'https://demoblogtuto.herokuapp.com';
-
-  constructor(private http: HttpClient) { }
-
-  getAllUser()
-  {
-    return this.http.get<UserResponse>(this.root + '/user/all');
-  }
+  constructor() { }
 
   getUserBookings(id: number)
   {

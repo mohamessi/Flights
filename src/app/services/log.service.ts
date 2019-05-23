@@ -20,17 +20,21 @@ export class LogService {
   
   logIn(username: string, password: string)
   {
-    let user = this.users.find(
-      u => {
-        return (u.username===username && u.password==password);
-      }      
-    );
-
-    if (user)
+    if (this.users)
     {
-      localStorage.setItem('id', String(user.id));
-      localStorage.setItem('username', user.username);
-      localStorage.setItem('role', user.role);
+      let user = this.users.find(
+        u => {
+          return (u.username===username && u.password==password);
+        }      
+      );
+  
+      if (user)
+      {
+        localStorage.setItem('id', String(user.id));
+        localStorage.setItem('username', user.username);
+        localStorage.setItem('role', user.role);
+      }
+  
     }
   }
 

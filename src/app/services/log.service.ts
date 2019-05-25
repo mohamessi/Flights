@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from './user.service';
 
+//utiliser les ressources login logout...
 @Injectable({
   providedIn: 'root'
 })
@@ -14,10 +15,14 @@ export class LogService {
     userService.getAllUser().subscribe(
       data => {
         this.users = data.content;
+      },
+      err => {
+        console.error('error', err);
       }
     );
   }
   
+  //appeler la ressource user/login
   logIn(username: string, password: string)
   {
     if (this.users)
@@ -38,6 +43,7 @@ export class LogService {
     }
   }
 
+  //appeler la ressource logout
   logOut()
   {
     localStorage.clear();
@@ -46,13 +52,15 @@ export class LogService {
 
   isLogIn(): boolean
   {
-    if (localStorage.getItem('username'))
+    return localStorage.getItem('username') ? true : false;
+/*     if (localStorage.getItem('username'))
       return true;
     else
       return false;
-  }
+ */  }
 
-  getIdUser()
+//renommer les méthodes  
+ getIdUser()
   {
     return (localStorage.getItem('id'));
   }

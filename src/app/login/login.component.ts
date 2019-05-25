@@ -12,20 +12,19 @@ export class LoginComponent implements OnInit
 {
   loginForm: FormGroup;
   submitted: boolean;  
-  isLogIn: boolean;
-    
+      
   constructor(private logService: LogService, private router: Router) { }
 
+  //mettre le contenu de ngOnInit() dans des fonctions
   ngOnInit() 
   {
     this.initForm();
     this.submitted = false;
-    this.isLogIn = this.logService.isLogIn();
-    /*if (this.isLogIn)
+    if (this.isLogin)
     {
-      this.router.navigate(['/']);
-      console.log('login', this.isLogIn, 'redirected to Home!');
-    } */
+      this.routerHome();
+      console.log('login', this.isLogin, 'redirected to Home!');
+    }
   }
 
   initForm()
@@ -36,6 +35,11 @@ export class LoginComponent implements OnInit
     });
   }
 
+  get isLogin()
+  {
+    return this.logService.isLogIn();
+  }
+  
   get username()
   {
     return this.loginForm.get('username');
@@ -48,20 +52,23 @@ export class LoginComponent implements OnInit
 
   onSubmit()
   {
-    this.submitted = true;    
-    let username = this.username.value;
-    let password = this.password.value;
-    this.logIn(username, password);
+    //vérifier que le formulaire est valide
+    this.submitted = true; 
+    this.logIn(this.username.value, this.password.value);
+  }
+
+  routerHome()
+  {
+    this.router.navigate(['/']);
   }
   
   public logIn(username: string, password: string)
   {
     this.logService.logIn(username, password);
-    this.isLogIn = this.logService.isLogIn();    
-    if (this.isLogIn)
+    if (this.isLogin)
     {
       console.log(this.logService.getUserLog(), 'is logged');
-      this.router.navigate(['/']);
+      this.routerHome();
     }
     else
       console.log('Please try again');
